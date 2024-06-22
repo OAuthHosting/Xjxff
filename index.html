@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starszz - Coming Soon</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            position: relative;
+            animation: slideUp 1s ease forwards;
+        }
+        
+        .title {
+            font-size: 3rem;
+            margin: 0;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .glow {
+            position: absolute;
+            content: attr(data-text);
+            top: 0;
+            left: 0;
+            color: #fff;
+            z-index: -1;
+            animation: glow-animation 2s infinite alternate;
+        }
+
+        .coming-soon {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+        
+        .join-link {
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .join-link:hover {
+            opacity: 1;
+        }
+
+        .snowflake {
+            position: absolute;
+            background-color: #fff;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: fallAnimation 10s linear infinite;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow-animation {
+            0% {
+                text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 50px #ffffff, 0 0 60px #ffffff, 0 0 70px #ffffff;
+            }
+            100% {
+                text-shadow: 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 50px #ffffff, 0 0 60px #ffffff, 0 0 70px #ffffff, 0 0 80px #ffffff;
+            }
+        }
+
+        @keyframes fallAnimation {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotateZ(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) translateX(calc(100vw - 4px)) rotateZ(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title" data-text="Starszz">Starszz<span class="glow"></span></h1>
+        <p class="coming-soon">Coming Soon</p>
+        <p class="join-link" onclick="window.location.href='https://discord.com/invite/wbZ8PTRuD6';">Click here to join</p>
+    </div>
+
+    <script>
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.style.left = `${Math.random() * 100}vw`;
+            snowflake.style.animationDuration = `${8 + Math.random() * 4}s`; // Vary animation duration slightly
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 10000); // Remove snowflake after 10 seconds
+        }
+
+        setInterval(createSnowflake, 1000 + Math.random() * 1000); // Spawn snowflakes every 1-2 seconds
+    </script>
+</body>
+</html>
